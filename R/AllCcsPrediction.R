@@ -185,14 +185,14 @@ setGeneric(name = 'AllCcsImputation',
 
              switch (polarity,
                      'pos' = {
-                       data('data/hmdb_mds_pos.rda', envir = environment())
+                       data('hmdb_mds_pos.rda', envir = environment())
                        # load(data('data/hmdb_mds_pos.rda', package = 'AllCCS'))
                        hmdb_mds <- hmdb_mds_pos
                        rm(hmdb_mds_pos)
                        gc()
                      },
                      'neg' = {
-                       data('data/hmdb_mds_neg.rda', envir = environment())
+                       data('hmdb_mds_neg.rda', envir = environment())
                        # load(data('data/hmdb_mds_neg.rda', package = 'AllCCS'))
                        hmdb_mds <- hmdb_mds_neg
                        rm(hmdb_mds_neg)

@@ -22,7 +22,7 @@ mz_transform <- function(M=NULL,
 
   polarity <- match.arg(polarity)
 
-  data('data/adduct.table.rda', envir = environment())
+  data('adduct.table.rda', envir = environment())
   # load(data('data/adduct.table.rda', package = 'AllCCS'))
   # load(data('data/adduct.table.rda', package = 'AllCCS'))
 
