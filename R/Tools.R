@@ -22,7 +22,7 @@ mz_transform <- function(M=NULL,
 
   polarity <- match.arg(polarity)
 
-  data('adduct.table.rda', envir = environment())
+  # data('./data/adduct.table.rda', envir = environment())
   # load(data('data/adduct.table.rda', package = 'AllCCS'))
   # load(data('data/adduct.table.rda', package = 'AllCCS'))
 
@@ -82,6 +82,7 @@ mz_transform <- function(M=NULL,
                        adduct=adduct,
                        mz=mz,
                        stringsAsFactors = F)
+  # cat('not here')
   return(output)
 }
 

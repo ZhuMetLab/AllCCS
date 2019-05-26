@@ -2,6 +2,8 @@
 #' @author Zhiwei Zhou
 #' @param mol_smiles
 #' @param mol_names
+#' @importFrom magrittr '%>%'
+#' @importClassesFrom e1071 'svm'
 #' @export
 #' @examples
 
@@ -16,6 +18,7 @@ setGeneric(name = 'AllCcsPrediction',
              is_output = TRUE
            ){
 
+             library(e1071)
              # dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
              if (length(mol_smiles)!=length(mol_names)) {
                stop('Please check the number of mol_smiles and mol_names.\n')
@@ -101,14 +104,16 @@ setGeneric(name = 'AllCcsPrediction',
 
              cat('Predict CCS values...\n\n')
              # MD imputation and scaling ---------------------------------------
-             load(system.file("inst/extdata",
+             # cat('Is: here1\n\n')
+             load(system.file("extdata",
                               "md_optimized_pos_standardization_table_190425.RData",
                               package="AllCCS"))
 
-             load(system.file("inst/extdata",
+             load(system.file("extdata",
                               "md_optimized_neg_standardization_table_190427.RData",
                               package="AllCCS"))
 
+             # cat('Is: here2\n\n')
              trans_md_imputed_pos <- quiet(
                AllCcsImputation(trans_md = trans_md_pos,
                                 md_standardization_table = md_optimzed_pos_standardization_table,
@@ -128,11 +133,11 @@ setGeneric(name = 'AllCcsPrediction',
                                                  md_standardization_table = md_optimzed_neg_standardization_table)
 
              # ---------------------------------------------------------------
-             load(system.file("inst/extdata",
+             load(system.file("extdata",
                               "svr_reg_pos_model_10times_190430.RData",
                               package="AllCCS"))
 
-             load(system.file("inst/extdata",
+             load(system.file("extdata",
                               "svr_reg_neg_model_10times_190430.RData",
                               package="AllCCS"))
 
@@ -149,12 +154,17 @@ setGeneric(name = 'AllCcsPrediction',
 
              result_neg <- data.frame(name = trans_md_zscore_neg$name,
                                       exact_mass = rep(md_result$MW, each=3),
-                                      adduct = trans_md_neg$adduct,
+                                      adduct = trans_md_zscore_neg$adduct,
                                       mz = trans_md_neg$mz,
                                       pred_CCS = predicted_ccs_neg,
                                       stringsAsFactors = F)
 
              final_result <- rbind.data.frame(result_pos, result_neg)
+
+             if (is_output) {
+               readr::write_csv(x = final_result,
+                                path = file.path(base_dir, 'pred_ccs_result.csv'))
+             }
 
              cat('The prediction has completed !\n')
 
@@ -185,14 +195,14 @@ setGeneric(name = 'AllCcsImputation',
 
              switch (polarity,
                      'pos' = {
-                       data('hmdb_mds_pos.rda', envir = environment())
+                       # data('hmdb_mds_pos.rda', envir = environment())
                        # load(data('data/hmdb_mds_pos.rda', package = 'AllCCS'))
                        hmdb_mds <- hmdb_mds_pos
                        rm(hmdb_mds_pos)
                        gc()
                      },
                      'neg' = {
-                       data('hmdb_mds_neg.rda', envir = environment())
+                       # data('hmdb_mds_neg.rda', envir = environment())
                        # load(data('data/hmdb_mds_neg.rda', package = 'AllCCS'))
                        hmdb_mds <- hmdb_mds_neg
                        rm(hmdb_mds_neg)
