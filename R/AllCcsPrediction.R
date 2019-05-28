@@ -2,6 +2,9 @@
 #' @author Zhiwei Zhou
 #' @param mol_smiles
 #' @param mol_names
+#' @param base_dir
+#' @param thread Default: 3
+#' @param is_output
 #' @importFrom magrittr '%>%'
 #' @importClassesFrom e1071 'svm'
 #' @export
@@ -15,6 +18,7 @@ setGeneric(name = 'AllCcsPrediction',
              mol_smiles,
              mol_names,
              base_dir = './AllCCS_result',
+             thread = 3,
              is_output = TRUE
            ){
 
@@ -30,9 +34,23 @@ setGeneric(name = 'AllCcsPrediction',
 
             if (!file.exists(file.path(base_dir, '00_intermediate_data', 'calculated_md.RData'))) {
               if (length(mol_smiles) > 1) {
-                md_result <- pbapply::pblapply(seq(length(mol_smiles)), function(i){
+                temp_fun <- function(i, mol_smiles, mol_names, MdCalculation) {
                   MdCalculation(mol_smiles = mol_smiles[i], mol_names = mol_names[i])
-                })
+                }
+
+                md_result <- BiocParallel::bplapply(X = seq(length(mol_smiles)),
+                                                    FUN = temp_fun,
+                                                    BPPARAM = BiocParallel::SnowParam(workers = thread,
+                                                                                      progressbar = TRUE),
+                                                    mol_smiles=mol_smiles,
+                                                    mol_names=mol_names,
+                                                    MdCalculation=MdCalculation)
+
+
+
+                # md_result <- pbapply::pblapply(seq(length(mol_smiles)), function(i){
+                #   MdCalculation(mol_smiles = mol_smiles[i], mol_names = mol_names[i])
+                # })
 
                 md_result <- do.call(rbind.data.frame, md_result)
 

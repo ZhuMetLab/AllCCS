@@ -1,7 +1,7 @@
 Package: AllCCS
 Type: Package
 Title: What the Package Does (Title Case)
-Version: 0.1.0
+Version: 0.1.1
 Author: Zhiwei Zhou
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
@@ -13,4 +13,5 @@ Imports:
     rcdk,
     e1071,
     reshape2,
-    dplyr
+    dplyr,
+    BiocParallel
