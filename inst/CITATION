@@ -1,0 +1,18 @@
+citHeader("The methods within the code package can be cited as:")
+
+citEntry(
+   entry="article",
+   title = "IM-MS derived collision cross section for metabolite anotation (In preparing)",
+   author = "Zhiwei Zhou, and Zhengjiang Zhu",
+   journal = "xx",
+   volume = 11,
+   issue = 11,
+   pages = "100-111",
+   year = 2019,
+   textVersion = "Zhou, Z. (2019) IM-MS derived collision cross section for metabolite anotation."
+)
+
+citFooter("This free open-source software implements academic
+research by the authors and co-workers. If you use it,
+please support the project by citing the appropriate
+journal articles.")

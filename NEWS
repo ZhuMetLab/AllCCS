@@ -1,0 +1,20 @@
+Version 0.1.0
+--------------
+o First release version
+
+
+Version 0.1.1
+--------------
+o Add multi-thread for MD calculation
+o Fix bugs
+
+
+Version 0.1.2
+--------------
+o Reformat the whole package with unified name
+o Add formal prediction model and parameters
+o Add Rss calculation functions
+o Add SMILES check functions
+o Build package page, documument & related files (e.g. News, License)
+o Fix bugs
+
