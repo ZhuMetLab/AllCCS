@@ -132,6 +132,9 @@ setGeneric(name = 'MdGet',
              } else {
                cat('Detected calculated molecular descriptors, and load it\n\n')
                load(file.path(base_dir, '00_intermediate_data', 'result_md.RData'))
+
+               result_md <- match(mol_name_valid, result_md$name) %>%
+                 result_md[.,]
              }
 
 

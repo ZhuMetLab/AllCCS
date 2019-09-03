@@ -63,8 +63,7 @@ setGeneric(name = 'RssCalculate',
 
 
              cat('Calculate Representive structure similarity ...\n\n')
-             rss_score <- pbapply::pbsapply(seq_along(result_fps), function(i){
-               # cat(i);cat(' ')
+             temp_fun <- function(i, result_fps, fplist, method){
                temp <- result_fps[i]
                result <- fingerprint::fp.sim.matrix(fplist = fplist, fplist2 = temp, method = method)
 
@@ -73,7 +72,32 @@ setGeneric(name = 'RssCalculate',
                  mean()
 
                return(result)
-             })
+             }
+
+             rss_score <- BiocParallel::bplapply(X = seq_along(result_fps),
+                                                 FUN = temp_fun,
+                                                 BPPARAM = BiocParallel::SnowParam(workers = thread, progressbar = TRUE),
+                                                 result_fps = result_fps,
+                                                 fplist = fplist,
+                                                 method = method)
+
+             dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+             save(rss_score,
+                  file = file.path(base_dir, '00_intermediate_data', 'rss_score.RData'))
+
+             rss_score <- rss_score %>% unlist()
+
+             # rss_score <- pbapply::pbsapply(seq_along(result_fps), function(i){
+             #   # cat(i);cat(' ')
+             #   temp <- result_fps[i]
+             #   result <- fingerprint::fp.sim.matrix(fplist = fplist, fplist2 = temp, method = method)
+             #
+             #   result <- sort(result, decreasing = TRUE) %>%
+             #     .[1:max_n] %>%
+             #     mean()
+             #
+             #   return(result)
+             # })
 
              names(rss_score) <- mol_names
 
