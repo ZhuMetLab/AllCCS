@@ -147,15 +147,22 @@ setGeneric(name = 'MdGet',
 
              # transform to mz -------------------------------------------------
              cat('Calculate m/z...', '\n')
-             result_md_trans_pos <- pbapply::pblapply(seq_along(result_md$name), function(i){
-               result <- MzTransform(M = result_md$MW[i],
+             result_md_trans_pos <- match(c('name', 'MW', colnames(md_hmdb_pos)), colnames(result_md)) %>%
+               result_md[,.]
+             result_md_trans_neg <- match(c('name', 'MW', colnames(md_hmdb_neg)), colnames(result_md)) %>%
+               result_md[,.]
+
+             rm(result_md);gc()
+
+             result_md_trans_pos <- pbapply::pblapply(seq_along(result_md_trans_pos$name), function(i){
+               result <- MzTransform(M = result_md_trans_pos$MW[i],
                                      adduct = c('[M+H]+', '[M+H-H2O]+', '[M+Na]+', '[M+NH4]+'))
 
                options(warn = -1)
-               result <- data.frame(name=result_md$name[i],
+               result <- data.frame(name=result_md_trans_pos$name[i],
                                     adduct=result$adduct,
                                     mz=result$mz,
-                                    result_md[i, -1, drop=F],
+                                    result_md_trans_pos[i, -1, drop=F],
                                     stringsAsFactors = F)
 
                rownames(result) <- NULL
@@ -164,15 +171,15 @@ setGeneric(name = 'MdGet',
                dplyr::bind_rows()
 
 
-             result_md_trans_neg <- pbapply::pblapply(seq_along(result_md$name), function(i){
-               result <- MzTransform(M = result_md$MW[i],
+             result_md_trans_neg <- pbapply::pblapply(seq_along(result_md_trans_neg$name), function(i){
+               result <- MzTransform(M = result_md_trans_neg$MW[i],
                                      adduct = c('[M-H]-', '[M+Na-2H]-', '[M+HCOO]-'))
 
                options(warn = -1)
-               result <- data.frame(name=result_md$name[i],
+               result <- data.frame(name=result_md_trans_neg$name[i],
                                     adduct=result$adduct,
                                     mz=result$mz,
-                                    result_md[i, -1, drop=F],
+                                    result_md_trans_neg[i, -1, drop=F],
                                     stringsAsFactors = F)
 
                rownames(result) <- NULL
@@ -210,8 +217,6 @@ setGeneric(name = 'MdGet',
                meta_error <- NULL
              }
 
-
-             rm(result_md);gc()
 
              # transform to mz -------------------------------------------------
              cat('\n', 'Impute NAs...\n\n', sep = '')
