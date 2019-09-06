@@ -18,3 +18,8 @@ o Add SMILES check functions
 o Build package page, documument & related files (e.g. News, License)
 o Fix bugs
 
+
+Version 0.1.3
+--------------
+o Optimize frame to save memory
+o Fix bugs

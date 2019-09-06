@@ -13,7 +13,7 @@
 #' test <- read.csv(system.file("extdata", "demo_data.csv", package="AllCCS"), stringsAsFactors = F)
 #' test <- MdGet(mol_smiles = test$smiles, mol_names = test$id_allccs, base_dir = '.')
 
-#
+
 # test <- read.csv('./inst/extdata/demo_data.csv', stringsAsFactors = F)
 # test <- CcsPredict(mol_smiles = test$smiles,
 #                    mol_names = test$id,
@@ -195,9 +195,9 @@ More information can be found in http://imms.zhulab.cn.
 If you have any questions, please send email to zhouzw@sioc.ac.cn or jiangzhu@sioc.ac.cn.
 Authors: Zhiwei Zhou and Dr. Zhengjiang Zhu (jiangzhu@sioc.ac.cn).
 Maintainer: Zhiwei Zhou
-Version 0.1.2 (20190831)
+Version 0.1.3 (20190906)
 --------------
-o First release.")
+o Optimize frame to save memory.")
 }
 
 
