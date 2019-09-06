@@ -45,6 +45,11 @@ setGeneric(name = 'MdGet',
              mass_valid <- Smiles2Mass(mol_smiles = mol_smiles_valid,
                                        mol_names = mol_name_valid)
 
+             dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+             save(mass_valid,
+                  file = file.path(base_dir, '00_intermediate_data', 'mass_valid.RData'),
+                  compress = 'gzip')
+
              if (!all(mass_valid >= 60 & mass_valid <= 1200)) {
                temp_idx <- which(mass_valid < 60 | mass_valid > 1200)
 
@@ -158,6 +163,7 @@ setGeneric(name = 'MdGet',
              }) %>%
                dplyr::bind_rows()
 
+
              result_md_trans_neg <- pbapply::pblapply(seq_along(result_md$name), function(i){
                result <- MzTransform(M = result_md$MW[i],
                                      adduct = c('[M-H]-', '[M+Na-2H]-', '[M+HCOO]-'))
@@ -204,6 +210,8 @@ setGeneric(name = 'MdGet',
                meta_error <- NULL
              }
 
+
+             rm(result_md);gc()
 
              # transform to mz -------------------------------------------------
              cat('\n', 'Impute NAs...\n\n', sep = '')

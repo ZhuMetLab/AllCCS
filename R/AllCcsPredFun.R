@@ -13,7 +13,7 @@
 #' test <- read.csv(system.file("extdata", "demo_data.csv", package="AllCCS"), stringsAsFactors = F)
 #' test <- MdGet(mol_smiles = test$smiles, mol_names = test$id_allccs, base_dir = '.')
 
-
+#
 # test <- read.csv('./inst/extdata/demo_data.csv', stringsAsFactors = F)
 # test <- CcsPredict(mol_smiles = test$smiles,
 #                    mol_names = test$id,
@@ -83,6 +83,8 @@ setGeneric(name = 'CcsPredict',
 
              meta_error <- result_md$meta_error
 
+             rm(result_md);gc()
+
              if (length(meta_pos)<1) {
                final_result <- meta_error %>%
                  dplyr::mutate(pred_ccs = NA,
@@ -108,6 +110,8 @@ setGeneric(name = 'CcsPredict',
 
              pred_ccs_pos <- predict(svr_reg_pos, result_md_pos[,-c(1:2)])
              pred_ccs_neg <- predict(svr_reg_neg, result_md_neg[,-c(1:2)])
+
+             rm(result_md_pos, result_md_neg); gc()
 
 
              cat('------------------------------------------------------------\n')
