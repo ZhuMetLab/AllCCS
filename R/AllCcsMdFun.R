@@ -42,13 +42,22 @@ setGeneric(name = 'MdGet',
 
              # check MD range to evaluate whether it is applicable
              cat('Check the mass range...\n\n')
-             mass_valid <- Smiles2Mass(mol_smiles = mol_smiles_valid,
-                                       mol_names = mol_name_valid)
 
-             dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
-             save(mass_valid,
-                  file = file.path(base_dir, '00_intermediate_data', 'mass_valid.RData'),
-                  compress = 'gzip')
+             if (!('mass_valid.RData' %in% list.files(file.path(base_dir,
+                                                               '00_intermediate_data')))) {
+               mass_valid <- Smiles2Mass(mol_smiles = mol_smiles_valid,
+                                         mol_names = mol_name_valid)
+
+               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               save(mass_valid,
+                    file = file.path(base_dir, '00_intermediate_data', 'mass_valid.RData'),
+                    compress = 'gzip')
+
+             } else {
+               cat('Detected calculated mass_valid, and load it\n\n')
+               load(file.path(base_dir, '00_intermediate_data', 'mass_valid.RData'))
+             }
+
 
              if (!all(mass_valid >= 60 & mass_valid <= 1200)) {
                temp_idx <- which(mass_valid < 60 | mass_valid > 1200)
