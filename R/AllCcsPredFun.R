@@ -24,7 +24,7 @@
 # test <- read.csv('./inst/extdata/demo_data_190902.csv', stringsAsFactors = F)
 # test <- CcsPredict(mol_smiles = test$smiles,
 #                    mol_names = test$id,
-#                    thread = 2,
+#                    thread = 1,
 #                    base_dir = '.',
 #                    is_output = F)
 
@@ -115,27 +115,52 @@ setGeneric(name = 'CcsPredict',
 
 
              cat('------------------------------------------------------------\n')
-             rss_pos <- RssCalculate(mol_smiles = match(meta_pos$name, mol_names) %>%
-                                       mol_smiles[.],
-                                     mol_names = match(meta_pos$name, mol_names) %>%
-                                       mol_names[.],
-                                     thread = thread,
-                                     max_n = 5,
-                                     polarity = 'pos',
-                                     type = 'pubchem',
-                                     method = 'tanimoto',
-                                     base_dir = base_dir)
+             if (!('rss_pos.RData' %in% list.files(file.path(base_dir,
+                                                                '00_intermediate_data')))) {
+               rss_pos <- RssCalculate(mol_smiles = match(meta_pos$name, mol_names) %>%
+                                         unique() %>%
+                                         mol_smiles[.],
+                                       mol_names = match(meta_pos$name, mol_names) %>%
+                                         unique() %>%
+                                         mol_names[.],
+                                       thread = thread,
+                                       max_n = 5,
+                                       polarity = 'pos',
+                                       type = 'pubchem',
+                                       method = 'tanimoto',
+                                       base_dir = base_dir)
 
-             rss_neg <- RssCalculate(mol_smiles = match(meta_neg$name, mol_names) %>%
-                                       mol_smiles[.],
-                                     mol_names = match(meta_neg$name, mol_names) %>%
-                                       mol_names[.],
-                                     thread = thread,
-                                     max_n = 5,
-                                     polarity = 'neg',
-                                     type = 'pubchem',
-                                     method = 'tanimoto',
-                                     base_dir = base_dir)
+               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               save(rss_pos,
+                    file = file.path(base_dir, '00_intermediate_data', 'rss_pos.RData'))
+             } else {
+               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               load(file.path(base_dir, '00_intermediate_data', 'rss_pos.RData'))
+             }
+
+
+             if (!('rss_neg.RData' %in% list.files(file.path(base_dir,
+                                                             '00_intermediate_data')))) {
+               rss_neg <- RssCalculate(mol_smiles = match(meta_neg$name, mol_names) %>%
+                                         unique() %>%
+                                         mol_smiles[.],
+                                       mol_names = match(meta_neg$name, mol_names) %>%
+                                         unique() %>%
+                                         mol_names[.],
+                                       thread = thread,
+                                       max_n = 5,
+                                       polarity = 'neg',
+                                       type = 'pubchem',
+                                       method = 'tanimoto',
+                                       base_dir = base_dir)
+
+               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               save(rss_neg,
+                    file = file.path(base_dir, '00_intermediate_data', 'rss_neg.RData'))
+             } else {
+               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               load(file.path(base_dir, '00_intermediate_data', 'rss_neg.RData'))
+             }
 
              rss_pos <- match(meta_pos$name, names(rss_pos)) %>%
                rss_pos[.] %>%
@@ -195,9 +220,10 @@ More information can be found in http://imms.zhulab.cn.
 If you have any questions, please send email to zhouzw@sioc.ac.cn or jiangzhu@sioc.ac.cn.
 Authors: Zhiwei Zhou and Dr. Zhengjiang Zhu (jiangzhu@sioc.ac.cn).
 Maintainer: Zhiwei Zhou
-Version 0.1.3 (20190906)
+Version 0.1.4 (20190909)
 --------------
-o Optimize frame to save memory.")
+o Optimize frame to save memory.
+o Fix some bugs.")
 }
 
 

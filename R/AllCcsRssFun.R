@@ -63,7 +63,7 @@ setGeneric(name = 'RssCalculate',
 
 
              cat('Calculate Representive structure similarity ...\n\n')
-             temp_fun <- function(i, result_fps, fplist, method){
+             temp_fun <- function(i, result_fps, fplist, max_n, method){
                temp <- result_fps[i]
                result <- fingerprint::fp.sim.matrix(fplist = fplist, fplist2 = temp, method = method)
 
@@ -79,11 +79,8 @@ setGeneric(name = 'RssCalculate',
                                                  BPPARAM = BiocParallel::SnowParam(workers = thread, progressbar = TRUE),
                                                  result_fps = result_fps,
                                                  fplist = fplist,
+                                                 max_n = max_n,
                                                  method = method)
-
-             dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
-             save(rss_score,
-                  file = file.path(base_dir, '00_intermediate_data', 'rss_score.RData'))
 
              rss_score <- rss_score %>% unlist()
 
