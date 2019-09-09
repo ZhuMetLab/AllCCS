@@ -48,7 +48,18 @@ setGeneric(name = 'CcsPredict',
              }
 
              cat('Check smiles validity...\n\n')
-             status_label <- SmilesCheck(mol_smiles)
+             if (!('status_label.RData' %in% list.files(file.path(base_dir,
+                                                                  '00_intermediate_data')))) {
+               status_label <- SmilesCheck(mol_smiles)
+
+               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               save(status_label,
+                    file = file.path(base_dir, '00_intermediate_data', 'status_label.RData'))
+             } else {
+               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               load(file.path(base_dir, '00_intermediate_data', 'status_label.RData'))
+             }
+
              names(mol_smiles) <- mol_names
              names(status_label) <- mol_names
 
@@ -69,21 +80,35 @@ setGeneric(name = 'CcsPredict',
              # MD calculation
              # if exist calculated MD, direct load calculated MDs
              cat('------------------------------------------------------------\n')
-             result_md <- MdGet(mol_smiles = mol_smiles,
-                                mol_names = mol_names,
-                                thread = thread,
-                                status_label = status_label,
-                                base_dir = base_dir)
+             if (!('result_md_final.RData' %in% list.files(file.path(base_dir,
+                                                                     '00_intermediate_data')))) {
+               result_md_final <- MdGet(mol_smiles = mol_smiles,
+                                        mol_names = mol_names,
+                                        thread = thread,
+                                        status_label = status_label,
+                                        base_dir = base_dir)
 
-             result_md_pos <- result_md$md_pos
-             result_md_neg <- result_md$md_neg
+               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               save(result_md_final,
+                    file = file.path(base_dir, '00_intermediate_data', 'result_md_final.RData'))
 
-             meta_pos <- result_md$meta_pos
-             meta_neg <- result_md$meta_neg
+             } else {
+               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               load(file.path(base_dir, '00_intermediate_data', 'result_md_final.RData'))
+             }
 
-             meta_error <- result_md$meta_error
 
-             rm(result_md);gc()
+
+
+             result_md_pos <- result_md_final$md_pos
+             result_md_neg <- result_md_final$md_neg
+
+             meta_pos <- result_md_final$meta_pos
+             meta_neg <- result_md_final$meta_neg
+
+             meta_error <- result_md_final$meta_error
+
+             rm(result_md_final);gc()
 
              if (length(meta_pos)<1) {
                final_result <- meta_error %>%
