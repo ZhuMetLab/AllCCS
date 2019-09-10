@@ -201,12 +201,14 @@ setGeneric(name = 'CcsPredict',
 
              result_pos <- meta_pos %>%
                dplyr::mutate(pred_ccs = pred_ccs_pos,
-                             rss = rss_pos) %>%
+                             rss = rss_pos,
+                             name = as.character(name)) %>%
                dplyr::select(name:mz, pred_ccs, rss, status)
 
              result_neg <- meta_neg %>%
                dplyr::mutate(pred_ccs = pred_ccs_neg,
-                             rss = rss_neg) %>%
+                             rss = rss_neg,
+                             name = as.character(name)) %>%
                dplyr::select(name:mz, pred_ccs, rss, status)
 
              final_result <- dplyr::bind_rows(result_pos, result_neg) %>%
@@ -215,7 +217,8 @@ setGeneric(name = 'CcsPredict',
              if (length(meta_error) > 0) {
                result_error <- meta_error %>%
                  dplyr::mutate(pred_ccs = NA,
-                               rss = NA) %>%
+                               rss = NA,
+                               name = as.character(name)) %>%
                  dplyr::select(name:mz, pred_ccs, rss, status) %>%
                  dplyr::arrange(name)
 
