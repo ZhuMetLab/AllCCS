@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • AllCCS</title>
+<title>GetCcsRange — GetCcsRange • AllCCS</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="GetCcsRange — GetCcsRange" />
+
+<meta property="og:description" content="GetCcsRange" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -50,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -100,132 +102,62 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>GetCcsRange</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JustinZZW/AllCCS/blob/master/R/AllCcsAnnotFun.R'><code>R/AllCcsAnnotFun.R</code></a></small>
+    <div class="hidden name"><code>GetCcsRange.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>GetCcsRange</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="CcsAnnotate.html">CcsAnnotate()</a></code> </p>
-        </td>
-        <td><p>CcsAnnotate</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="CcsPredict.html">CcsPredict()</a></code> </p>
-        </td>
-        <td><p>CcsPredict</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ExactMassCalculate.html">ExactMassCalculate()</a></code> </p>
-        </td>
-        <td><p>ExactMassCalculate</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="FpCalculate.html">FpCalculate()</a></code> </p>
-        </td>
-        <td><p>FpCalcualte</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="GetCcsRange.html">GetCcsRange()</a></code> </p>
-        </td>
-        <td><p>GetCcsRange</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="GetTrapezoidalScore.html">GetTrapezoidalScore()</a></code> </p>
-        </td>
-        <td><p>GetTrapezoidalScore</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="IntegrityCheck.html">IntegrityCheck()</a></code> </p>
-        </td>
-        <td><p>IntegrityCheck</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="KnnImpute.html">KnnImpute()</a></code> </p>
-        </td>
-        <td><p>KnnImpute</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="MdCalculate.html">MdCalculate()</a></code> </p>
-        </td>
-        <td><p>MdCalculate</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="MdGet.html">MdGet()</a></code> </p>
-        </td>
-        <td><p>MdGet</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="MzTransform.html">MzTransform()</a></code> </p>
-        </td>
-        <td><p>MzTransform</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="NaImputate.html">NaImputate()</a></code> </p>
-        </td>
-        <td><p>NaImpute</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="RssCalculate.html">RssCalculate()</a></code> </p>
-        </td>
-        <td><p>RssCalculate</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Smiles2Mass.html">Smiles2Mass()</a></code> </p>
-        </td>
-        <td><p>Smiles2Mass</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="SmilesCheck.html">SmilesCheck()</a></code> </p>
-        </td>
-        <td><p>SmilesCheck</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ZscoreScaling.html">ZscoreScaling()</a></code> </p>
-        </td>
-        <td><p>ZscoreScaling</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>GetCcsRange</span>(<span class='no'>data</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"percentage"</span>, <span class='st'>"a_square"</span>), <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>Numeric.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>'percentage', 'a_square'. Default: percentage</p></td>
+    </tr>
+    <tr>
+      <th>tolerance</th>
+      <td><p>Numeric. CCS deviation tolerance. Default: 4</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>a table of range. column 1: minimum value; column 2: maxmium value.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>GetCcsRange</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>200</span>),
+            <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'percentage'</span>,
+            <span class='kw'>tolerance_ccs</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='error'>Error in GetCcsRange(data = c(100, 200), type = "percentage", tolerance_ccs = 4): 参数没有用(tolerance_ccs = 4)</span></div><div class='input'><span class='fu'>GetCcsRange</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>200</span>),
+            <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'a_square'</span>,
+            <span class='kw'>tolerance_ccs</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='error'>Error in GetCcsRange(data = c(100, 200), type = "a_square", tolerance_ccs = 4): 参数没有用(tolerance_ccs = 4)</span></div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    <p>Zhiwei Zhou</p>
   </div>
 </div>
 

@@ -16,8 +16,8 @@
 
 # test <- read.csv('./inst/extdata/demo_data.csv', stringsAsFactors = F)
 # test <- CcsPredict(mol_smiles = test$smiles,
-#                    mol_names = test$id,
-#                    thread = 2,
+#                    mol_names = test$id_allccs,
+#                    thread = 1,
 #                    base_dir = '.',
 #                    is_output = F)
 
@@ -56,6 +56,7 @@ setGeneric(name = 'CcsPredict',
                save(status_label,
                     file = file.path(base_dir, '00_intermediate_data', 'status_label.RData'))
              } else {
+               cat('Detected calculated status_label, and load it\n\n')
                dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
                load(file.path(base_dir, '00_intermediate_data', 'status_label.RData'))
              }
@@ -93,6 +94,7 @@ setGeneric(name = 'CcsPredict',
                     file = file.path(base_dir, '00_intermediate_data', 'result_md_final.RData'))
 
              } else {
+               cat('Detected calculated result_md_final, and load it\n\n')
                dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
                load(file.path(base_dir, '00_intermediate_data', 'result_md_final.RData'))
              }
@@ -159,6 +161,7 @@ setGeneric(name = 'CcsPredict',
                save(rss_pos,
                     file = file.path(base_dir, '00_intermediate_data', 'rss_pos.RData'))
              } else {
+               cat('Detected calculated rss_pos, and load it\n\n')
                dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
                load(file.path(base_dir, '00_intermediate_data', 'rss_pos.RData'))
              }
@@ -183,6 +186,7 @@ setGeneric(name = 'CcsPredict',
                save(rss_neg,
                     file = file.path(base_dir, '00_intermediate_data', 'rss_neg.RData'))
              } else {
+               cat('Detected calculated rss_neg, and load it\n\n')
                dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
                load(file.path(base_dir, '00_intermediate_data', 'rss_neg.RData'))
              }
@@ -248,10 +252,10 @@ More information can be found in http://imms.zhulab.cn.
 If you have any questions, please send email to zhouzw@sioc.ac.cn or jiangzhu@sioc.ac.cn.
 Authors: Zhiwei Zhou and Dr. Zhengjiang Zhu (jiangzhu@sioc.ac.cn).
 Maintainer: Zhiwei Zhou
-Version 0.1.4 (20190909)
+Version 0.1.5 (20191013)
 --------------
-o Optimize frame to save memory.
-o Fix some bugs.")
+o Add CcsAnnotate Function.
+")
 }
 
 

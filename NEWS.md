@@ -22,3 +22,7 @@
 --------------
 - Optimize frame to save memory
 - Fix bugs
+
+#### Version 0.1.5 (20191013)
+--------------
+- Add CcsAnnotate Function.
