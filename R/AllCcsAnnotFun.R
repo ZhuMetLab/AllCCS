@@ -2,17 +2,19 @@
 #' @title CcsAnnotate
 #' @author Zhiwei Zhou
 #' @description
-#' @param mz
-#' @param ccs
-#' @param rank_type
-#' @param filter_type
-#' @param tolerance_ccs
-#' @param tolerance_min
-#' @param tolerance_max
-#' @param weight_ccs
-#' @param weight_msms
+#' @param mz experimentally measured m/z.
+#' @param ccs experimentally measured CCS.
+#' @param candidate_list csv file. Default: NULL
+#' @param rank_type 'ccs_scoring' or 'ccs_filtering'. 'ccs_scoring': annotate unknows by calculating CCS score and integrated score; 'ccs_filtering': annotate unknows by filtering. Default: "ccs_scoring"
+#' @param filter_type 'percentage' or 'a_square'.
+#' @param tolerance_ccs numeric. Range: 1-100
+#' @param tolerance_min numeric, unit: %. Range: 0-10
+#' @param tolerance_max numeric, unit: %. Range: 0-10
+#' @param weight_ccs Default: 0.3
+#' @param weight_msms Default: 0.7
 #' @param base_dir Default: '.'
 #' @param is_output TRUE
+#' @param thread Default: 1
 #' @export
 #' @examples
 #' # CCS scoring
@@ -41,7 +43,7 @@
 
 # candidate_list <- 'F:/01 MetIMMS/00 data processing/191012_allccs_annotate_function_in_package/example/L0614/demo_data/demo_example.csv'
 
-# # CCS scoring
+# CCS scoring
 # candidate_list <- './inst/extdata/demo_annotation.csv'
 # test <- CcsAnnotate(mz = 666.312,
 #                     ccs = 261.0582,
@@ -53,7 +55,7 @@
 #                     weight_msms = 0.7,
 #                     base_dir = '.',
 #                     is_output = TRUE)
-#
+
 # # CCS filtering
 # candidate_list <- './inst/extdata/demo_annotation.csv'
 # test <- CcsAnnotate(mz = 666.312,
@@ -63,6 +65,7 @@
 #                     filter_type = 'percentage',
 #                     tolerance_ccs = 4,
 #                     base_dir = '.',
+#                     thread = 2,
 #                     is_output = TRUE)
 
 
@@ -80,7 +83,7 @@ setGeneric(name = 'CcsAnnotate',
              weight_ccs = 0.3,
              weight_msms = 0.7,
              base_dir = '.',
-             thread = 1,
+             thread = 2,
              is_output = TRUE
            ){
              rank_type <- match.arg(rank_type)
@@ -159,6 +162,12 @@ setGeneric(name = 'CcsAnnotate',
                  dplyr::mutate(rank = seq(nrow(result))) %>%
                  dplyr::select(rank, name:msms_score, dplyr::everything())
 
+               if (is_output) {
+                 readr::write_csv(result,
+                                  path = file.path(temp_path,
+                                                   'annotate_result_filtering.csv'))
+               }
+
              }
 
              if (rank_type == 'ccs_scoring') {
@@ -185,13 +194,16 @@ setGeneric(name = 'CcsAnnotate',
                result <- result %>%
                  dplyr::mutate(rank = seq(nrow(result))) %>%
                  dplyr::select(rank, name:msms_score, dplyr::everything())
+
+               if (is_output) {
+                 readr::write_csv(result,
+                                  path = file.path(temp_path,
+                                                   'annotate_result_scoring.csv'))
+               }
              }
 
              cat('Completed!\n')
-             if (is_output) {
-               readr::write_csv(result,
-                                path = file.path(temp_path, 'annotate_result.csv'))
-             }
+
 
              return(result)
 

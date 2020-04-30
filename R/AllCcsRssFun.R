@@ -150,7 +150,8 @@ setGeneric(name = 'FpCalculate',
 
                names(result_fps) <- mol_names
 
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                save(result_fps,
                     file = file.path(base_dir, '00_intermediate_data', 'result_fps.RData'))
              } else {

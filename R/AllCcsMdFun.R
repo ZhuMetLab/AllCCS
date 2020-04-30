@@ -48,7 +48,8 @@ setGeneric(name = 'MdGet',
                mass_valid <- Smiles2Mass(mol_smiles = mol_smiles_valid,
                                          mol_names = mol_name_valid)
 
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                save(mass_valid,
                     file = file.path(base_dir, '00_intermediate_data', 'mass_valid.RData'),
                     compress = 'gzip')
@@ -135,12 +136,13 @@ setGeneric(name = 'MdGet',
                  result_md <- result_md %>% dplyr::bind_rows()
 
                } else {
-                 result_md <- MdCalculation(mol_smiles = mol_smiles_valid,
-                                            mol_names = mol_name_valid)
+                 result_md <- MdCalculate(mol_smiles = mol_smiles_valid,
+                                          mol_names = mol_name_valid)
                }
 
 
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                save(result_md,
                     file = file.path(base_dir, '00_intermediate_data', 'result_md.RData'))
              } else {

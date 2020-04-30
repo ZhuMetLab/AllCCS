@@ -15,8 +15,8 @@
 
 
 # test <- read.csv('./inst/extdata/demo_data.csv', stringsAsFactors = F)
-# test <- CcsPredict(mol_smiles = test$smiles,
-#                    mol_names = test$id_allccs,
+# test <- CcsPredict(mol_smiles = test$smiles[1],
+#                    mol_names = test$id_allccs[1],
 #                    thread = 1,
 #                    base_dir = '.',
 #                    is_output = F)
@@ -25,14 +25,14 @@
 # test <- CcsPredict(mol_smiles = test$smiles,
 #                    mol_names = test$id,
 #                    thread = 1,
-#                    base_dir = '.',
-#                    is_output = F)
+#                    base_dir = './ccs_prediction',
+#                    is_output = T)
 
 setGeneric(name = 'CcsPredict',
            def = function(
              mol_smiles,
              mol_names,
-             base_dir = '.',
+             base_dir = './ccs_prediction',
              thread = 3,
              is_output = TRUE
            ){
@@ -52,12 +52,14 @@ setGeneric(name = 'CcsPredict',
                                                                   '00_intermediate_data')))) {
                status_label <- SmilesCheck(mol_smiles)
 
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                save(status_label,
                     file = file.path(base_dir, '00_intermediate_data', 'status_label.RData'))
              } else {
                cat('Detected calculated status_label, and load it\n\n')
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                load(file.path(base_dir, '00_intermediate_data', 'status_label.RData'))
              }
 
@@ -89,13 +91,15 @@ setGeneric(name = 'CcsPredict',
                                         status_label = status_label,
                                         base_dir = base_dir)
 
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                save(result_md_final,
                     file = file.path(base_dir, '00_intermediate_data', 'result_md_final.RData'))
 
              } else {
                cat('Detected calculated result_md_final, and load it\n\n')
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                load(file.path(base_dir, '00_intermediate_data', 'result_md_final.RData'))
              }
 
@@ -157,12 +161,14 @@ setGeneric(name = 'CcsPredict',
                                        method = 'tanimoto',
                                        base_dir = base_dir)
 
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                save(rss_pos,
                     file = file.path(base_dir, '00_intermediate_data', 'rss_pos.RData'))
              } else {
                cat('Detected calculated rss_pos, and load it\n\n')
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                load(file.path(base_dir, '00_intermediate_data', 'rss_pos.RData'))
              }
 
@@ -182,12 +188,14 @@ setGeneric(name = 'CcsPredict',
                                        method = 'tanimoto',
                                        base_dir = base_dir)
 
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                save(rss_neg,
                     file = file.path(base_dir, '00_intermediate_data', 'rss_neg.RData'))
              } else {
                cat('Detected calculated rss_neg, and load it\n\n')
-               dir.create(file.path(base_dir, '00_intermediate_data'), recursive = TRUE)
+               dir.create(file.path(base_dir, '00_intermediate_data'),
+                          recursive = TRUE, showWarnings = FALSE)
                load(file.path(base_dir, '00_intermediate_data', 'rss_neg.RData'))
              }
 
@@ -252,9 +260,10 @@ More information can be found in http://imms.zhulab.cn.
 If you have any questions, please send email to zhouzw@sioc.ac.cn or jiangzhu@sioc.ac.cn.
 Authors: Zhiwei Zhou and Dr. Zhengjiang Zhu (jiangzhu@sioc.ac.cn).
 Maintainer: Zhiwei Zhou
-Version 0.1.5 (20191013)
+Version 0.1.62 (20191109)
 --------------
-o Add CcsAnnotate Function.
+o Change default thread to 1 in CcsAnnotation.
+o Add some dependences packages.
 ")
 }
 

@@ -27,3 +27,20 @@ o Fix bugs
 Verison 0.1.5
 --------------
 o Add CcsAnnotate Function.
+
+Verison 0.1.6
+--------------
+o Change the default output directory in CCS prediction.
+
+Verison 0.1.61
+--------------
+o Fix some known bugs.
+
+Verison 0.1.62
+--------------
+o Change default thread to 1 in CcsAnnotation.
+o Add some dependences packages
+
+Verison 0.1.63
+--------------
+o Package for submission

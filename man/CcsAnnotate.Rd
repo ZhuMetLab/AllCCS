@@ -8,10 +8,32 @@ CcsAnnotate(mz = NULL, ccs = NULL, candidate_list = NULL,
   rank_type = c("ccs_scoring", "ccs_filtering"),
   filter_type = c("percentage", "a_square"), tolerance_ccs = 4,
   tolerance_min = 2, tolerance_max = 4, weight_ccs = 0.3,
-  weight_msms = 0.7, base_dir = ".", thread = 1, is_output = TRUE)
+  weight_msms = 0.7, base_dir = ".", thread = 2, is_output = TRUE)
 }
 \arguments{
+\item{mz}{experimentally measured m/z.}
+
+\item{ccs}{experimentally measured CCS.}
+
+\item{candidate_list}{csv file. Default: NULL}
+
+\item{rank_type}{'ccs_scoring' or 'ccs_filtering'. 'ccs_scoring': annotate unknows by calculating CCS score and integrated score; 'ccs_filtering': annotate unknows by filtering. Default: "ccs_scoring"}
+
+\item{filter_type}{'percentage' or 'a_square'.}
+
+\item{tolerance_ccs}{numeric. Range: 1-100}
+
+\item{tolerance_min}{numeric, unit: %. Range: 0-10}
+
+\item{tolerance_max}{numeric, unit: %. Range: 0-10}
+
+\item{weight_ccs}{Default: 0.3}
+
+\item{weight_msms}{Default: 0.7}
+
 \item{base_dir}{Default: '.'}
+
+\item{thread}{Default: 1}
 
 \item{is_output}{TRUE}
 }

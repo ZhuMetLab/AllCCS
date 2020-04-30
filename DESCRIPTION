@@ -1,7 +1,7 @@
 Package: AllCCS
 Type: Package
 Title: Machine learning based CCS value prediction for small molecules.
-Version: 0.1.5
+Version: 0.1.63
 Date: 2019-08-31
 Authors@R: c(
     person("Zhiwei", "Zhou", email = "zhouzw@sioc.ac.cn", role = c("aut", "cre"),
@@ -25,7 +25,9 @@ Imports:
     Rdisop,
     readr,
     webchem,
-    magrittr
+    magrittr,
+    pbapply,
+    impute
 RoxygenNote: 6.1.0
 Suggests: 
     knitr,

@@ -4,8 +4,8 @@
 \alias{CcsPredict}
 \title{CcsPredict}
 \usage{
-CcsPredict(mol_smiles, mol_names, base_dir = ".", thread = 3,
-  is_output = TRUE)
+CcsPredict(mol_smiles, mol_names, base_dir = "./ccs_prediction",
+  thread = 3, is_output = TRUE)
 }
 \arguments{
 \item{mol_smiles}{a vector of SMILES structures}

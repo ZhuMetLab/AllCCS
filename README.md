@@ -31,4 +31,4 @@ If you have any quesitions about `AllCCS`, please don't hesitate to email me (zh
 This free open-source software implements academic research by the authors and co-workers. If you use it,
 please support the project by citing the appropriate journal articles.
 
-Zhiwei Zhou, Zhengjiang Zhu*, IM-MS derived collision cross section for metabolite anotation, In preparing, 2019
+Z. Zhou, M. Luo, X. Chen, Y. Yin, X. Xiong, R. Wang, and Z.-J. Zhu*, Ion Mobility Collision Cross-Section Atlas for Known and Unknown Metabolite Annotation in Untargeted Metabolomics, Submitted

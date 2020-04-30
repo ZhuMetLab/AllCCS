@@ -2,14 +2,14 @@ citHeader("The methods within the code package can be cited as:")
 
 citEntry(
    entry="article",
-   title = "IM-MS derived collision cross section for metabolite anotation (In preparing)",
-   author = "Zhiwei Zhou, and Zhengjiang Zhu",
-   journal = "xx",
-   volume = 11,
-   issue = 11,
-   pages = "100-111",
-   year = 2019,
-   textVersion = "Zhou, Z. (2019) IM-MS derived collision cross section for metabolite anotation."
+   title = "Ion Mobility Collision Cross-Section Atlas for Known and Unknown Metabolite Annotation in Untargeted Metabolomics",
+   author = "Zhiwei Zhou, Mingdu Luo, Xi Chen, Yandong Yin, Xin Xiong, Ruohong Wang, and Zheng-Jiang Zhu*",
+   journal = "xxx",
+   volume = xx,
+   issue = xxx,
+   pages = "xxx",
+   year = 2020,
+   textVersion = "Zhou, Z. (2020) Ion Mobility Collision Cross-Section Atlas for Known and Unknown Metabolite Annotation in Untargeted Metabolomics."
 )
 
 citFooter("This free open-source software implements academic
