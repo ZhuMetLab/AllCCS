@@ -8,6 +8,10 @@
 
 <img src="man/figures/package_workflow.png" align="middle" alt="" width = "80%"/>
 
+## Web server
+
+[**AllCCS web server**](http://allccs.zhulab.cn/) provides complete functions (Database, Prediction, Identification). Welcome to visit.
+
 ## Installation
 
 You can install `AllCCS` from [Github](https://github.com/JustinZZW/AllCCS).
@@ -31,4 +35,4 @@ If you have any quesitions about `AllCCS`, please don't hesitate to email me (zh
 This free open-source software implements academic research by the authors and co-workers. If you use it,
 please support the project by citing the appropriate journal articles.
 
-Z. Zhou, M. Luo, X. Chen, Y. Yin, X. Xiong, R. Wang, and Z.-J. Zhu*, Ion Mobility Collision Cross-Section Atlas for Known and Unknown Metabolite Annotation in Untargeted Metabolomics, Submitted
+Z. Zhou, M. Luo, X. Chen, Y. Yin, X. Xiong, R. Wang, and Z.-J. Zhu*, Ion Mobility Collision Cross-Section Atlas for Known and Unknown Metabolite Annotation in Untargeted Metabolomics, ***Nature Communications***, **2020**, In Press.
