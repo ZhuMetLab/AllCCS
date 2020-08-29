@@ -35,4 +35,4 @@ If you have any quesitions about `AllCCS`, please don't hesitate to email me (zh
 This free open-source software implements academic research by the authors and co-workers. If you use it,
 please support the project by citing the appropriate journal articles.
 
-Z. Zhou, M. Luo, X. Chen, Y. Yin, X. Xiong, R. Wang, and Z.-J. Zhu*, Ion Mobility Collision Cross-Section Atlas for Known and Unknown Metabolite Annotation in Untargeted Metabolomics, ***Nature Communications***, **2020**, In Press.
+Z. Zhou, M. Luo, X. Chen, Y. Yin, X. Xiong, R. Wang, and Z.-J. Zhu*, Ion Mobility Collision Cross-Section Atlas for Known and Unknown Metabolite Annotation in Untargeted Metabolomics, ***Nature Communications***, **2020**, 11: 4334. [link](https://www.nature.com/articles/s41467-020-18171-8)
