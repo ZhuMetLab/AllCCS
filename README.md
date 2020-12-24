@@ -21,7 +21,7 @@ You can install `AllCCS` from [Github](https://github.com/ZhuMetLab/AllCCS).
 if(!require(devtools)){
 install.packages("devtools")
 }
-devtools::install_github("justinZZW/AllCCS")
+devtools::install_github("ZhuMetLab/AllCCS")
 ```
 ## Usage
 
