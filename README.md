@@ -14,7 +14,7 @@
 
 ## Installation
 
-You can install `AllCCS` from [Github](https://github.com/JustinZZW/AllCCS).
+You can install `AllCCS` from [Github](https://github.com/ZhuMetLab/AllCCS).
 
 ```
 # Install `AllCCS` from GitHub
