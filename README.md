@@ -36,3 +36,7 @@ This free open-source software implements academic research by the authors and c
 please support the project by citing the appropriate journal articles.
 
 Z. Zhou, M. Luo, X. Chen, Y. Yin, X. Xiong, R. Wang, and Z.-J. Zhu*, Ion Mobility Collision Cross-Section Atlas for Known and Unknown Metabolite Annotation in Untargeted Metabolomics, ***Nature Communications***, **2020**, 11: 4334. [link](https://www.nature.com/articles/s41467-020-18171-8)
+
+## License
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a> 
+This work is licensed under the Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
